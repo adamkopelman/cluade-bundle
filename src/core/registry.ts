@@ -1,5 +1,5 @@
 import { join, basename } from 'path';
-import { existsSync, mkdirSync, rmSync } from 'fs';
+import { existsSync, mkdirSync, rmSync, readFileSync } from 'fs';
 import { loadConfig, saveConfig } from './config.js';
 import { getBundleDir } from './paths.js';
 import { cloneRepo } from '../utils/git.js';
@@ -8,6 +8,7 @@ export interface BundleEntry {
   name: string;
   path: string;
   url: string;
+  description?: string;
 }
 
 export async function addBundle(url: string): Promise<void> {
@@ -51,9 +52,22 @@ export function removeBundle(name: string, deleteFiles = false): void {
 
 export function listBundles(): BundleEntry[] {
   const config = loadConfig();
-  return Object.entries(config.bundles).map(([name, info]) => ({
-    name,
-    path: info.path,
-    url: info.url,
-  }));
+  return Object.entries(config.bundles).map(([name, info]) => {
+    let description = '';
+    try {
+      const manifestPath = join(info.path, 'bundle.json');
+      if (existsSync(manifestPath)) {
+        const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+        description = manifest.description || '';
+      }
+    } catch {
+      // ignore
+    }
+    return {
+      name,
+      path: info.path,
+      url: info.url,
+      description,
+    };
+  });
 }

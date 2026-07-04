@@ -19,7 +19,7 @@ export async function listCommand(): Promise<void> {
       ? `${Object.keys(secrets).length}/${manifest.requires_secrets.length} secrets set`
       : 'no secrets required';
 
-    console.log(`  ${bundle.name.padEnd(20)} ${bundle.description.slice(0, 40)}`);
+    console.log(`  ${bundle.name.padEnd(20)} ${(bundle.description ?? '').slice(0, 40)}`);
     console.log(`                       ${secretsStatus}`);
   }
   console.log();

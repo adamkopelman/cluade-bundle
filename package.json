@@ -15,6 +15,7 @@
   "keywords": ["claude", "bundle", "mcp", "launcher"],
   "author": "",
   "license": "MIT",
+  "files": ["dist/**/*"],
   "engines": {
     "node": ">=20.0.0"
   },

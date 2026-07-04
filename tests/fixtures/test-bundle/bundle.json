@@ -1,0 +1,6 @@
+{
+  "name": "test-bundle",
+  "description": "Test bundle for integration tests",
+  "include_plugins": [],
+  "requires_secrets": []
+}

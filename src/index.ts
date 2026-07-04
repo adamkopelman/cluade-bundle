@@ -1,2 +1,7 @@
 #!/usr/bin/env node
-console.log('claude-bundle v0.1.0');
+import { dispatch } from './cli.js';
+
+dispatch(process.argv.slice(2)).catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});

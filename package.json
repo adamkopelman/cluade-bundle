@@ -13,8 +13,16 @@
     "lint": "tsc --noEmit"
   },
   "keywords": ["claude", "bundle", "mcp", "launcher"],
-  "author": "",
+  "author": "adamkopelman",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamkopelman/cluade-bundle.git"
+  },
+  "homepage": "https://github.com/adamkopelman/cluade-bundle#readme",
+  "bugs": {
+    "url": "https://github.com/adamkopelman/cluade-bundle/issues"
+  },
   "files": ["dist/**/*"],
   "engines": {
     "node": ">=20.0.0"

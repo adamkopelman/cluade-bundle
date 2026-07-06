@@ -5,5 +5,7 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     include: ['tests/**/*.test.ts'],
+    // Required: process.chdir() in tests/unit/commands/init.test.ts is unsupported in worker threads pool
+    pool: 'forks',
   },
 });
